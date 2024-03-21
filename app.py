@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 import os
 from flask_cors import CORS
@@ -8,12 +8,15 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app)
 
-#Get the environment variables
-app.config['DEBUG'] = os.environ.get('FLASK_DEBUG')
+# Chargez les variables d'environnement
+app.config['DEBUG'] = os.getenv('FLASK_DEBUG') == 'True'
 
-@app.route('/')
-def hello_world():
-    return 'Hello Ahmed'
+@app.route('/', methods=['POST'])
+def hello_name():
+    data = request.json
+    name = data.get('input', 'World')  # Obtenez le nom du JSON, ou utilisez 'World' par défaut si non spécifié
+    response = {'message': f'Hello, {name}!'}
+    return jsonify(response)
 
 if __name__ == '__main__':
     app.run()

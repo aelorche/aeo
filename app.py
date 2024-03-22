@@ -18,7 +18,7 @@ def hello_name():
     number_1 = data.get('number_1', '1')
     number_2 = data.get('number_2', '2')
     number_3 = number_1 + number_2
-    response = {'message': f'Hello, {name}!, number_1 + number_2 = {number_3}}
+    response = {'message': f'Hello, {name}!, number_1 + number_2 = {number_3}'}
     return jsonify(response)
 
 if __name__ == '__main__':

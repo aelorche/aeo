@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Load environment variables
 app.config['DEBUG'] = os.getenv('FLASK_DEBUG') == 'True'
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET'])
 def hello_name():
     if request.headers['Content-Type'] != 'application/json; charset=utf-8':
         return jsonify({'error': 'Unsupported Media Type'}), 415

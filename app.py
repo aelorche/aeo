@@ -11,7 +11,7 @@ CORS(app)
 # Chargez les variables d'environnement
 app.config['DEBUG'] = os.getenv('FLASK_DEBUG') == 'True'
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['GET','POST'])
 def hello_name():
     data = request.json
     name = data.get('input', 'World')  # Obtenez le nom du JSON, ou utilisez 'World' par défaut si non spécifié

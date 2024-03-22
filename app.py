@@ -14,8 +14,11 @@ app.config['DEBUG'] = os.getenv('FLASK_DEBUG') == 'True'
 @app.route('/', methods=['GET','POST'])
 def hello_name():
     data = request.json
-    name = data.get('input', 'World')  # Obtenez le nom du JSON, ou utilisez 'World' par défaut si non spécifié
-    response = {'message': f'Hello, {name}!'}
+    name = data.get('input', 'World')
+    number_1 = data.get('number_1', '1')
+    number_2 = data.get('number_2', '2')
+    number_3 = number_1 + number_2
+    response = {'message': f'Hello, {name}!, number_1 + number_2 = {number_3}}
     return jsonify(response)
 
 if __name__ == '__main__':

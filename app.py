@@ -8,7 +8,7 @@ app.config['DEBUG'] = os.getenv('FLASK_DEBUG') == 'True'
 
 @app.route('/', methods=['GET'])
 def hello_name():
-    if request.headers['Content-Type'] != 'application/json; charset=utf-8':
+    if request.headers['Content-Type'] != 'application/json;charset=utf-8':
         return jsonify({'error': 'Unsupported Media Type'}), 415
 
     data = request.json

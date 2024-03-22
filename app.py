@@ -1,11 +1,13 @@
 from flask import Flask, jsonify
 
 app = Flask(__name__)
-
+datain = request.json
 @app.route('/')
 def hello_world():
-    # Your data
-    data = {'message': 'Hello, world!'}
+    request.headers['Content-Type'] = 'application/json'
+    name = datain.get('input', 'Ahmed')
+    
+    data = {'message': 'Hello, {name}!'}
 
     # Setting Content-Type header to 'application/json'
     response = jsonify(data)

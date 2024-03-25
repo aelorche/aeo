@@ -4,13 +4,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    # Retrieve input parameter from the request query string
     name = request.args.get('name', 'World')
 
-    # Your data
-    data = {'message': f'Hello {name}!'}
+    name_out = name
+    date = sysdate
+    status = "OK"
+    
+    data = {'message': f'Hello {name}!',
+            'date':sysdate,
+            'status':status}
 
-    # Setting Content-Type header to 'application/json'
     response = jsonify(data)
     response.headers['Content-Type'] = 'application/json'
 

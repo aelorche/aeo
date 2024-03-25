@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -7,11 +8,11 @@ def hello_world():
     name = request.args.get('name', 'World')
 
     name_out = name
-    date = sysdate
+    date = datetime.now()
     status = "OK"
     
     data = {'message': f'Hello {name}!',
-            'date':sysdate,
+            'date':date,
             'status':status}
 
     response = jsonify(data)

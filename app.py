@@ -8,7 +8,7 @@ def hello_world():
     name = request.args.get('name', 'World')
 
     # Your data
-    data = {'message': f'Hello, {name}!'}
+    data = {'message': f'Hello {name}!'}
 
     # Setting Content-Type header to 'application/json'
     response = jsonify(data)

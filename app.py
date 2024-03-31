@@ -6,11 +6,11 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     name = request.args.get('name', 'World')
-    date = datetime.now()
+    date_time = datetime.now()
     status = "OK"
     
     data = {'message': f'Hello {name}!',
-            'date':date,
+            'date':date_time,
             'status':status}
 
     response = jsonify(data)

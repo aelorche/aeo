@@ -1,6 +1,3 @@
-from flask import Flask, jsonify, request
-from datetime import datetime
-
 app = Flask(__name__)
 
 @app.route('/')
@@ -8,14 +5,14 @@ def hello_world():
     name = request.args.get('name', 'World')
     date_time = datetime.now()
 
-    if (name = 'Ahmed'):
+    if name == 'Ahmed':
         status = "NOK"
-    else
+    else:
         status = "OK"
     
     data = {'message': f'Hello {name}!',
-            'date':date_time,
-            'status':status}
+            'date': date_time,
+            'status': status}
 
     response = jsonify(data)
     response.headers['Content-Type'] = 'application/json'

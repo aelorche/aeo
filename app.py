@@ -11,7 +11,7 @@ def hello_world():
     if (name = 'Ahmed'):
         status = "NOK"
     else
-        status = "NOK"
+        status = "OK"
     
     data = {'message': f'Hello {name}!',
             'date':date_time,

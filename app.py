@@ -7,7 +7,11 @@ app = Flask(__name__)
 def hello_world():
     name = request.args.get('name', 'World')
     date_time = datetime.now()
-    status = "OK"
+
+    if (name = 'Ahmed'):
+        status = "NOK"
+    else
+        status = "NOK"
     
     data = {'message': f'Hello {name}!',
             'date':date_time,

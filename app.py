@@ -5,15 +5,16 @@ app = Flask(__name__)
 
 @app.route('/')
 def aeo_function():
-    name = request.args.get('name', 'World')
+    firstname = request.args.get('firstname', 'World')
+    familyname = request.args.get('familyname', 'World')
     date_time = datetime.now()
 
-    if name == 'Ahmed':
+    if firstname == 'Ahmed':
         status = "NOK"
     else:
         status = "OK"
     
-    data = {'message': f'Hello {name}!',
+    data = {'message': f'Hello {firstname} {familyname}!',
             'date': date_time,
             'status': status}
 

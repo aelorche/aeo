@@ -4,7 +4,7 @@ from datetime import datetime
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
+def aeo_function():
     name = request.args.get('name', 'World')
     date_time = datetime.now()
 

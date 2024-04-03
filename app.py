@@ -9,10 +9,8 @@ def aeo_function():
     familyname = request.args.get('familyname', 'World')
     date_time = datetime.now()
 
-    if firstname == 'Ahmed':
-        status = "NOK"
-    else:
-        status = "OK"
+    
+    status = eval("print('hello Ahmed')")
     
     data = {'message': f'Hello {firstname} {familyname}!',
             'date': date_time,

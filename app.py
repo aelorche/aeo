@@ -1,27 +1,21 @@
-from flask import Flask, jsonify, request
-from datetime import datetime
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/')
-def aeo_function():
-    firstname = request.args.get('firstname', 'World')
-    familyname = request.args.get('familyname', 'World')
-    date_time = datetime.now()
+@app.route('/execute-python', methods=['POST'])
+def execute_python_code():
+    code = request.json.get('code')
+    # Exécuter le code Python (attention à la sécurité!)
+    result = execute_code_safely(code)
+    # Renvoyer les résultats dans la réponse
+    return jsonify({'result': result}), 200
 
-    if firstname == 'Ahmed':
-        status = "NOK"
-    else:
-        status = "OK"
-    
-    data = {'message': f'Hello {firstname} {familyname}!',
-            'date': date_time,
-            'status': status}
-
-    response = jsonify(data)
-    response.headers['Content-Type'] = 'application/json'
-
-    return response
+def execute_code_safely(code):
+    # Exécutez le code de manière sécurisée (par exemple, en utilisant sandboxing)
+    # Cela peut nécessiter l'utilisation de bibliothèques tierces comme PySandbox
+    # Pour cet exemple, nous allons simplement simuler le traitement du code
+    result = eval(code)
+    return result
 
 if __name__ == '__main__':
-    app.run(ssl_context='adhoc')
+    app.run(debug=True)

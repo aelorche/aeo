@@ -1,16 +1,27 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
+from datetime import datetime
 
 app = Flask(__name__)
 
-@app.route('/execute-python', methods=['GET'])
-def execute_python_code():
-    python_code = request.form.get('python_code')
+@app.route('/')
+def aeo_function():
+    firstname = request.args.get('firstname', 'World')
+    familyname = request.args.get('familyname', 'World')
+    date_time = datetime.now()
+
+    if firstname == 'Ahmed':
+        status = "NOK"
+    else:
+        status = "OK"
     
-    try:
-        result = eval(python_code)
-        return jsonify({'result': result}), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 400
+    data = {'message': f'Hello {firstname} {familyname}!',
+            'date': date_time,
+            'status': status}
+
+    response = jsonify(data)
+    response.headers['Content-Type'] = 'application/json'
+
+    return response
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(ssl_context='adhoc')

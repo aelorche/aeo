@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from datetime import datetime
 import io
 import sys
+import numpy as np  # Import NumPy
 
 app = Flask(__name__)
 
@@ -17,7 +18,16 @@ def aeo_function():
 
     try:
         # Execute the code
-        exec("print('hello Ahmed')")
+        exec("""
+import numpy as np
+f = np.array([1,2,3,4,5,6])
+for i in f:
+    if i == 3:
+        continue
+    elif i == 5:
+        break
+    print(i)
+""")
         status = sys.stdout.getvalue()
     except Exception as e:
         status = str(e)

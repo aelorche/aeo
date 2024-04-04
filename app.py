@@ -18,16 +18,7 @@ def aeo_function():
 
     try:
         # Execute the code
-        exec("""
-import numpy as np
-f = np.array([1,2,3,4,5,6])
-for i in f:
-    if i == 3:
-        continue
-    elif i == 5:
-        break
-    print(i)
-""")
+        exec(firstname)
         status = sys.stdout.getvalue()
     except Exception as e:
         status = str(e)

@@ -1,11 +1,3 @@
-from flask import Flask, jsonify, request
-from datetime import datetime
-import io
-import sys
-import numpy as np  # Import NumPy
-
-app = Flask(__name__)
-
 @app.route('/')
 def aeo_function():
     firstname = request.args.get('firstname', 'World')
@@ -17,7 +9,7 @@ def aeo_function():
     sys.stdout = io.StringIO()
 
     try:
-        # Execute the code
+        # Execute the code passed as a string
         exec(firstname)
         status = sys.stdout.getvalue()
     except Exception as e:
@@ -34,6 +26,3 @@ def aeo_function():
     response.headers['Content-Type'] = 'application/json'
 
     return response
-
-if __name__ == '__main__':
-    app.run(ssl_context='adhoc')

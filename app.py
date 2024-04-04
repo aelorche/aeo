@@ -7,25 +7,20 @@ import numpy as np
 app = Flask(__name__)
 
 @app.route('/')
-def aeo_function():
-    firstname = request.args.get('firstname', 'World')
-    familyname = request.args.get('familyname', 'World')
-    date_time = datetime.now()
-
+def python_code():
+    code = request.args.get('code', NULL)
     stdout_backup = sys.stdout
     sys.stdout = io.StringIO()
 
     try:
-        exec(firstname)
-        status = sys.stdout.getvalue()
+        exec(code)
+        output_result = sys.stdout.getvalue()
     except Exception as e:
-        status = str(e)
+        output_result = str(e)
     finally:
         sys.stdout = stdout_backup
 
-    data = {'message': f'Hello {firstname} {familyname}!',
-            'date': date_time.strftime('%Y-%m-%d %H:%M:%S'),
-            'status': status}
+    data = {'code': output_result}
 
     response = jsonify(data)
     response.headers['Content-Type'] = 'application/json'

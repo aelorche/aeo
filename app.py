@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def python_code():
-    code = request.args.get('code', NULL)
+    code = request.args.get('code', 'code')
     stdout_backup = sys.stdout
     sys.stdout = io.StringIO()
 
@@ -20,7 +20,7 @@ def python_code():
     finally:
         sys.stdout = stdout_backup
 
-    data = {'code': output_result}
+    data = {'output_result': output_result}
 
     response = jsonify(data)
     response.headers['Content-Type'] = 'application/json'

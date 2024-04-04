@@ -15,12 +15,14 @@ def python_code():
     try:
         exec(code)
         output_result = sys.stdout.getvalue()
+        output_type = 'S'
     except Exception as e:
         output_result = str(e)
+        output_type = 'E'
     finally:
         sys.stdout = stdout_backup
 
-    data = {'output_result': output_result}
+    data = {'output_result': output_result, 'output_type': output_type}
 
     response = jsonify(data)
     response.headers['Content-Type'] = 'application/json'
